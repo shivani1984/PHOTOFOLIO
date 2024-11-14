@@ -1,6 +1,7 @@
 import React from 'react';
-import Header from "./header"
-import AddPhoto from "./add-photo"
+import Header from "./components/Header"
+import Title from './components/Title';
+import DialogBox from './components/dialog-box';
 
 
 function App() {
@@ -8,7 +9,9 @@ function App() {
         <div>
             
             <Header/>
-            <AddPhoto/>
+            <Title/>
+            <DialogBox/>
+            
         </div>
     );
 }

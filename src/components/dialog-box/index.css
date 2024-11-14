@@ -1,0 +1,33 @@
+.buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
+.container {
+    background-color: lightgrey;
+    padding: 20px;
+    width: 50%;
+    margin-left: 280px;
+    border-radius: 10px;
+}
+
+.input {
+    width: 400px;
+    /* Adjust width as needed */
+    height: 45px;
+    /* Adjust height as needed */
+    padding: 0 15px;
+    /* Horizontal padding */
+    border-radius: 20px;
+    /* Rounded corners */
+    border: 1px solid #dcdcdc;
+    /* Light gray border */
+    font-size: 16px;
+    /* Font size */
+}
+
+.cancelButton {
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 150px;
+}

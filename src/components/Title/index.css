@@ -1,0 +1,11 @@
+.addAlbum {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 30px;
+    padding-left: 150px;
+    padding-right: 150px;
+}
+
+.button {
+    margin-top: 20px;
+}

@@ -1,0 +1,13 @@
+.header {
+    display: flex;
+    background-color: lightskyblue;
+}
+
+.image img {
+    width: 50px;
+    /* Adjust as needed */
+    height: auto;
+    /* Maintains aspect ratio */
+    margin-left: 40px;
+    margin-right: 10px;
+}
