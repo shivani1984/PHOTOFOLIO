@@ -3,9 +3,11 @@ import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import "./index.css";
 
-export default function DialogBox() {
+export default function DialogBox({onClose}) {
     const [albumName, setAlbumName] = useState("");
+    const [isVisible, setIsVisible] =useState("true");
 
+    
     const handleClear = () => {
         setAlbumName("");
     };
@@ -16,6 +18,8 @@ export default function DialogBox() {
 
     return (
         <>
+            
+            <div>
             <div className="container">
                 <h1>Create an Album</h1>
                 <div className="buttons">
@@ -32,8 +36,10 @@ export default function DialogBox() {
                 </div>
             </div>
             <div className="cancelButton">
-                <Button variant="outlined">Cancel</Button>
+                <Button variant="outlined" onClick={onClose} >Cancel</Button>
             </div>
+            </div>
+            
         </>
     );
 }
