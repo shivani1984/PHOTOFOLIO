@@ -1,0 +1,24 @@
+        .card {
+            width: 12rem;
+            height: 12rem;
+            background-color: gainsboro;
+            border-radius: 5px;
+            padding: 5px;
+        }
+        
+        .card:hover {
+            background-color: cornflowerblue;
+        }
+        
+        .card-image {
+            background-color: white;
+            width: 12rem;
+            height: 9rem;
+            border-radius: 5px;
+        }
+        
+        .cardContainer {
+            padding-left: 150px;
+            padding-right: 150px;
+            padding-top: 10px;
+        }

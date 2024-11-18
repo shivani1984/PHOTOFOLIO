@@ -1,0 +1,32 @@
+        .imgContainer {
+            padding-left: 150px;
+            padding-right: 150px;
+        }
+        
+        .imgBox {
+            background-color: lightgrey;
+            padding: 20px;
+            width: auto;
+            margin-left: 150px;
+            margin-right: 150px;
+            border-radius: 10px;
+        }
+        
+        .input {
+            width: 90%;
+            /* Adjust width as needed */
+            height: 45px;
+            /* Adjust height as needed */
+            padding: 0 15px;
+            /* Horizontal padding */
+            border-radius: 20px;
+            /* Rounded corners */
+            border: 1px solid #dcdcdc;
+            /* Light gray border */
+            font-size: 16px;
+            /* Font size */
+        }
+        
+        .title {
+            margin-bottom: 20px;
+        }
