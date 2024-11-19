@@ -2,8 +2,7 @@ import React, { useState } from "react";
 import Header from "./components/Header";
 import Title from "./components/Title";
 import Card from "./components/Content/Card";
-import Image from "./components/Content/Image";
-import AddImage from "./components/Content/AddImage";
+import CheckImage from "./components/Content/checkImage";
 import DialogBox from "./components/dialog-box";
 import Albums from "./components/Content/Albums";
 
@@ -11,6 +10,11 @@ function App() {
     const [albumName, setAlbumName] = useState("");
     const [showDialogBox, setShowDialogBox] = useState(false);
     const [albumsArray, setAlbumsArray] = useState([]);
+    const [showCheckImage, setShowCheckImage] = useState(false);
+
+    const handleOnCardClick = () => {
+        setShowCheckImage((prev) => !prev); // Toggle the state
+    };
 
     const handleCreate = () => {
         if (albumName.trim()) {
@@ -35,7 +39,7 @@ function App() {
     };
 
     const handleClear = () => {
-        setAlbumName(""); // Clear the state, which clears the input
+        setAlbumName("");
     };
 
     return (
@@ -44,15 +48,20 @@ function App() {
             <Title onOpen={handleAddAlbum} />
             {showDialogBox && (
                 <DialogBox
-                    albumName={albumName} // Pass albumName to DialogBox
+                    albumName={albumName}
                     handleClose={handleClose}
                     handleInputChange={handleInputChange}
                     handleClear={handleClear}
-                    handleCreate={handleCreate} // Added handleCreate prop
+                    handleCreate={handleCreate}
                 />
             )}
-            <Albums albumsArray ={albumsArray}/>
-            
+            <Albums 
+                albumsArray={albumsArray} 
+                handleOnCardClick={handleOnCardClick} 
+            />
+            {showCheckImage && <CheckImage />
+                               
+            }
         </div>
     );
 }

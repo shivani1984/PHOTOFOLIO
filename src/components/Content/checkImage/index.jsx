@@ -2,7 +2,7 @@ import { Button } from "@mui/material";
 import React from "react";
 import "./index.css";
 
-export default function YourComponent() {
+export default function CheckImage() {
     return (
         <>
             <div className="imageContainer">
