@@ -4,23 +4,28 @@ import Title from "./components/Title";
 import Card from "./components/Content/Card";
 import CheckImage from "./components/Content/checkImage";
 import DialogBox from "./components/dialog-box";
-import Albums from "./components/Content/Albums";
 
 function App() {
     const [albumName, setAlbumName] = useState("");
     const [showDialogBox, setShowDialogBox] = useState(false);
     const [albumsArray, setAlbumsArray] = useState([]);
     const [showCheckImage, setShowCheckImage] = useState(false);
+    const [showTItleBar, setShowTItleBar] = useState(true);
+
+
+    
 
     const handleOnCardClick = () => {
         setShowCheckImage((prev) => !prev); // Toggle the state
+        setShowDialogBox((prev) => !prev); // Toggle the state
+
+
     };
 
     const handleCreate = () => {
         if (albumName.trim()) {
             setAlbumsArray([...albumsArray, albumName]);
             setAlbumName("");
-            setShowDialogBox(false);
         } else {
             alert("Please enter a valid album name!");
         }
@@ -28,6 +33,7 @@ function App() {
 
     const handleAddAlbum = () => {
         setShowDialogBox(true);
+        setShowTItleBar(false);
     };
 
     const handleClose = () => {
@@ -42,10 +48,13 @@ function App() {
         setAlbumName("");
     };
 
+    
+
     return (
         <div>
             <Header />
-            <Title onOpen={handleAddAlbum} />
+            {showTItleBar && <Title onOpen={handleAddAlbum} />}
+
             {showDialogBox && (
                 <DialogBox
                     albumName={albumName}
@@ -55,15 +64,19 @@ function App() {
                     handleCreate={handleCreate}
                 />
             )}
-            <Albums 
-                albumsArray={albumsArray} 
-                handleOnCardClick={handleOnCardClick} 
-            />
-            {showCheckImage && <CheckImage />
-                               
-            }
+            {!showCheckImage &&
+                albumsArray.map((albumName, index) => (
+                    <Card
+                        key={index}
+                        albumName={albumName}
+                        handleOnCardClick={handleOnCardClick}
+                    />
+                ))}
+
+            {/* Render CheckImage Component */}
+            {showCheckImage && <CheckImage />}
         </div>
     );
 }
 
-export default App;
+export default App
