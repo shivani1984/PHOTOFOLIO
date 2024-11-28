@@ -4,6 +4,7 @@ import Title from "./components/Title";
 import Card from "./components/Content/Card";
 import CheckImage from "./components/Content/checkImage";
 import DialogBox from "./components/dialog-box";
+import ImageCard from "./components/Content/ImageCard";
 
 function App() {
     const [albumName, setAlbumName] = useState("");
@@ -11,6 +12,11 @@ function App() {
     const [albumsArray, setAlbumsArray] = useState([]);
     const [showCheckImage, setShowCheckImage] = useState(false);
     const [showTItleBar, setShowTItleBar] = useState(true);
+    const [showAddImageBox,setShowAddImageBox]=useState(false);
+
+    const handleAddImage =()=>{
+        setShowAddImageBox((prev)=> !prev);
+    }
 
 
     
@@ -74,7 +80,16 @@ function App() {
                 ))}
 
             {/* Render CheckImage Component */}
-            {showCheckImage && <CheckImage />}
+            {showCheckImage && <CheckImage
+                             handleAddImage ={handleAddImage}
+                             showAddImageBox = {showAddImageBox}
+             />}
+
+            
+
+            {showAddImageBox && (<ImageCard
+                                    
+            />)}
         </div>
     );
 }
