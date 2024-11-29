@@ -2,8 +2,9 @@ import React from "react";
 import Button from '@mui/material/Button';
 import "./index.css";
 import { useState } from "react";
+import App from "../../../App";
 
-export default function ImageCard(){
+export default function ImageCard({currentAlbumName}){
 
     const [title,setTItle]= useState("");
     const [image,setimage]= useState("");
@@ -27,7 +28,7 @@ export default function ImageCard(){
     return(<>
 
     <div className="AddImage">
-        <div><h1>Add image to first</h1></div>
+        <div><h1>Add image to {currentAlbumName}</h1></div>
 
         <div >
         

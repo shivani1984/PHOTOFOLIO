@@ -9,10 +9,11 @@ import ImageCard from "./components/Content/ImageCard";
 function App() {
     const [albumName, setAlbumName] = useState("");
     const [showDialogBox, setShowDialogBox] = useState(false);
-    const [albumsArray, setAlbumsArray] = useState([]);
+    const[albumsArray, setAlbumsArray] = useState([]);
     const [showCheckImage, setShowCheckImage] = useState(false);
     const [showTItleBar, setShowTItleBar] = useState(true);
     const [showAddImageBox,setShowAddImageBox]=useState(false);
+    const [currentAlbumName, setCurrentAlbumName] = useState("");
 
     const handleAddImage =()=>{
         setShowAddImageBox((prev)=> !prev);
@@ -21,7 +22,8 @@ function App() {
 
     
 
-    const handleOnCardClick = () => {
+    const handleOnCardClick = (albumName) => {
+        setCurrentAlbumName(albumName)
         setShowCheckImage((prev) => !prev); // Toggle the state
         setShowDialogBox((prev) => !prev); // Toggle the state
 
@@ -88,6 +90,7 @@ function App() {
             
 
             {showAddImageBox && (<ImageCard
+                                 currentAlbumName={currentAlbumName}
                                     
             />)}
         </div>
