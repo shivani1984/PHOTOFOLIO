@@ -15,9 +15,20 @@ function App() {
     const [showAddImageBox,setShowAddImageBox]=useState(false);
     const [currentAlbumName, setCurrentAlbumName] = useState("");
 
+    const handleReturn =()=>{
+        setShowDialogBox(true);
+        setShowAddImageBox(false);
+        setShowCheckImage(false);
+        
+
+    }
+
     const handleAddImage =()=>{
         setShowAddImageBox((prev)=> !prev);
+        
     }
+
+
 
 
     
@@ -85,6 +96,7 @@ function App() {
             {showCheckImage && <CheckImage
                              handleAddImage ={handleAddImage}
                              showAddImageBox = {showAddImageBox}
+                             handleReturn = {handleReturn}
              />}
 
             
