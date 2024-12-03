@@ -1,0 +1,8 @@
+.titleBar {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.pointer {
+    cursor: pointer;
+}

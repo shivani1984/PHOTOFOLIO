@@ -5,40 +5,43 @@ import Card from "./components/Content/Card";
 import CheckImage from "./components/Content/checkImage";
 import DialogBox from "./components/dialog-box";
 import ImageCard from "./components/Content/ImageCard";
+import Images from "./components/Images";
 
 function App() {
     const [albumName, setAlbumName] = useState("");
     const [showDialogBox, setShowDialogBox] = useState(false);
-    const[albumsArray, setAlbumsArray] = useState([]);
+    const [albumsArray, setAlbumsArray] = useState([]);
     const [showCheckImage, setShowCheckImage] = useState(false);
     const [showTItleBar, setShowTItleBar] = useState(true);
-    const [showAddImageBox,setShowAddImageBox]=useState(false);
+    const [showAddImageBox, setShowAddImageBox] = useState(false);
     const [currentAlbumName, setCurrentAlbumName] = useState("");
+    const [showImagesContainer, setshowImagesContainer] = useState(false);
 
-    const handleReturn =()=>{
+    const handleAddImages = () => {
+        setshowImagesContainer(true);
+    };
+
+    const handleGoBack = () => {
+        setShowDialogBox(true);
+        setShowCheckImage(false);
+        setShowAddImageBox(false);
+        setshowImagesContainer(false);
+    };
+
+    const handleReturn = () => {
         setShowDialogBox(true);
         setShowAddImageBox(false);
         setShowCheckImage(false);
-        
+    };
 
-    }
-
-    const handleAddImage =()=>{
-        setShowAddImageBox((prev)=> !prev);
-        
-    }
-
-
-
-
-    
+    const handleAddImage = () => {
+        setShowAddImageBox((prev) => !prev);
+    };
 
     const handleOnCardClick = (albumName) => {
-        setCurrentAlbumName(albumName)
+        setCurrentAlbumName(albumName);
         setShowCheckImage((prev) => !prev); // Toggle the state
         setShowDialogBox((prev) => !prev); // Toggle the state
-
-
     };
 
     const handleCreate = () => {
@@ -67,8 +70,6 @@ function App() {
         setAlbumName("");
     };
 
-    
-
     return (
         <div>
             <Header />
@@ -93,20 +94,24 @@ function App() {
                 ))}
 
             {/* Render CheckImage Component */}
-            {showCheckImage && <CheckImage
-                             handleAddImage ={handleAddImage}
-                             showAddImageBox = {showAddImageBox}
-                             handleReturn = {handleReturn}
-             />}
+            {showCheckImage && (
+                <CheckImage
+                    handleAddImage={handleAddImage}
+                    showAddImageBox={showAddImageBox}
+                    handleReturn={handleReturn}
+                />
+            )}
 
-            
+            {showAddImageBox && (
+                <ImageCard
+                    currentAlbumName={currentAlbumName}
+                    handleAddImages={handleAddImages}
+                />
+            )}
 
-            {showAddImageBox && (<ImageCard
-                                 currentAlbumName={currentAlbumName}
-                                    
-            />)}
+            {showImagesContainer && <Images handleGoBack={handleGoBack} />}
         </div>
     );
 }
 
-export default App
+export default App;
