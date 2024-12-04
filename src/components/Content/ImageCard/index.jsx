@@ -2,22 +2,12 @@ import React, { useState } from "react";
 import Button from "@mui/material/Button";
 import "./index.css";
 
-export default function ImageCard({ currentAlbumName, handleAddImages }) {
-    const [title, setTitle] = useState("");
-    const [image, setImage] = useState("");
+export default function ImageCard({ currentAlbumName, handleAddImage, handleTitle, title, handleImageURL, imageURL, handleClear }) {
 
-    const handleTitle = (e) => {
-        setTitle(e.target.value);
-    };
+    
 
-    const handleImage = (e) => {
-        setImage(e.target.value);
-    };
+    
 
-    const handleClear = () => {
-        setTitle("");
-        setImage("");
-    };
 
     return (
         <>
@@ -29,7 +19,7 @@ export default function ImageCard({ currentAlbumName, handleAddImages }) {
                 <div>
                     <div className="InputField">
                         <input
-                            type="text"
+                            type="url"
                             placeholder="Title"
                             className="input"
                             value={title}
@@ -41,8 +31,8 @@ export default function ImageCard({ currentAlbumName, handleAddImages }) {
                             type="url"
                             placeholder="Image URL"
                             className="input"
-                            value={image}
-                            onChange={handleImage}
+                            value={imageURL}
+                            onChange={handleImageURL}
                         />
                     </div>
                 </div>
@@ -54,7 +44,7 @@ export default function ImageCard({ currentAlbumName, handleAddImages }) {
                         </Button>
                     </div>
                     <div>
-                        <Button variant="contained" onClick={handleAddImages}>
+                        <Button variant="contained" onClick={handleAddImage}>
                             Add
                         </Button>
                     </div>

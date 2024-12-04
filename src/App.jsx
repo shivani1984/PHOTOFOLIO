@@ -16,9 +16,48 @@ function App() {
     const [showAddImageBox, setShowAddImageBox] = useState(false);
     const [currentAlbumName, setCurrentAlbumName] = useState("");
     const [showImagesContainer, setshowImagesContainer] = useState(false);
+    const [isAddingImage, setIsAddingImage] = useState(false);
+    const [title, setTitle] = useState("");
+    const [titleArray, setTitleArray] = useState([]);
+    const [imageURL, setImageURL] = useState("");
+    const [imagesArray, setImagesArray] = useState([]);
 
     const handleAddImages = () => {
-        setshowImagesContainer(true);
+        if (imageURL.trim() && title.trim()) {
+            setImagesArray((prevImages) => [...prevImages, imageURL]);
+            setTitleArray((prevTitles) => [...prevTitles, title]);
+            setImageURL("");
+            setTitle("");
+            alert("Image and Title added successfully!");
+            setshowImagesContainer(true);
+            console.log("showImagesContainer is now true");
+
+
+        } else {
+            alert("Please enter a valid title and image URL.");
+            console.log("Image or title invalid");
+
+        }
+    };
+
+    const handleClear = () => {
+        setTitle("");
+        setImageURL("");
+    };
+
+    const handleTitle = (e) => {
+        setTitle(e.target.value);
+    };
+
+    const handleImageURL = (e) => {
+        const url = e.target.value;
+        const urlPattern = /^(https?:\/\/.*\.(png|jpg|jpeg|gif|svg|webp))$/i;
+
+        if (urlPattern.test(url)) {
+            setImageURL(url);
+        } else {
+            alert("Please enter a valid image URL (e.g., ending with .png, .jpg).");
+        }
     };
 
     const handleGoBack = () => {
@@ -26,6 +65,7 @@ function App() {
         setShowCheckImage(false);
         setShowAddImageBox(false);
         setshowImagesContainer(false);
+        setIsAddingImage(false);
     };
 
     const handleReturn = () => {
@@ -34,14 +74,10 @@ function App() {
         setShowCheckImage(false);
     };
 
-    const handleAddImage = () => {
-        setShowAddImageBox((prev) => !prev);
-    };
-
     const handleOnCardClick = (albumName) => {
         setCurrentAlbumName(albumName);
-        setShowCheckImage((prev) => !prev); // Toggle the state
-        setShowDialogBox((prev) => !prev); // Toggle the state
+        setShowCheckImage((prev) => !prev);
+        setShowDialogBox((prev) => !prev);
     };
 
     const handleCreate = () => {
@@ -66,10 +102,6 @@ function App() {
         setAlbumName(e.target.value);
     };
 
-    const handleClear = () => {
-        setAlbumName("");
-    };
-
     return (
         <div>
             <Header />
@@ -84,7 +116,8 @@ function App() {
                     handleCreate={handleCreate}
                 />
             )}
-            {!showCheckImage &&
+
+            {!showCheckImage && !isAddingImage &&
                 albumsArray.map((albumName, index) => (
                     <Card
                         key={index}
@@ -93,10 +126,9 @@ function App() {
                     />
                 ))}
 
-            {/* Render CheckImage Component */}
             {showCheckImage && (
                 <CheckImage
-                    handleAddImage={handleAddImage}
+                    handleAddImage={() => setShowAddImageBox(true)}
                     showAddImageBox={showAddImageBox}
                     handleReturn={handleReturn}
                 />
@@ -106,10 +138,18 @@ function App() {
                 <ImageCard
                     currentAlbumName={currentAlbumName}
                     handleAddImages={handleAddImages}
+                    handleTitle={handleTitle}
+                    handleClear={handleClear}
+                    handleImageURL={handleImageURL}
+                    title={title}
+                    imageURL={imageURL}
                 />
             )}
 
-            {showImagesContainer && <Images handleGoBack={handleGoBack} />}
+            {showImagesContainer && (<Images handleGoBack={handleGoBack}
+                                            title ={title}
+                                            imageURL={imageURL}
+             />)}
         </div>
     );
 }

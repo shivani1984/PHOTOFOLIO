@@ -6,3 +6,10 @@
 .pointer {
     cursor: pointer;
 }
+
+.images {
+    background-color: lightgrey;
+    width: 12rem;
+    height: 9rem;
+    border-radius: 5px;
+}
