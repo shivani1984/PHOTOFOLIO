@@ -21,7 +21,7 @@ function App() {
     const [titleArray, setTitleArray] = useState([]);
     const [imageURL, setImageURL] = useState("");
     const [imagesArray, setImagesArray] = useState([]);
-
+    //temporary comment
     const handleAddImages = () => {
         if (imageURL.trim() && title.trim()) {
             setImagesArray((prevImages) => [...prevImages, imageURL]);
