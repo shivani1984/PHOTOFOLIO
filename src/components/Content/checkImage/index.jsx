@@ -3,7 +3,7 @@ import React from "react";
 import "./index.css";
 import App from "../../../App";
 
-export default function CheckImage({handleAddImage, showAddImageBox,handleReturn }) {
+export default function CheckImage({handleAddImageContainer, showAddImageContainer,handleReturn }) {
     return (
         <>
             <div className="imageContainer">
@@ -11,9 +11,9 @@ export default function CheckImage({handleAddImage, showAddImageBox,handleReturn
                 <div className="noImageFound"><h1>No image found in the album</h1></div>
                 <div className="button">
                     <Button variant="outlined"
-                      onClick={handleAddImage}
+                      onClick={handleAddImageContainer}
                     >
-                        {showAddImageBox ? "Cancel" : "Add Image"}
+                        {showAddImageContainer ? "Cancel" : "Add Image"}
                     </Button>
                 </div>
             </div>

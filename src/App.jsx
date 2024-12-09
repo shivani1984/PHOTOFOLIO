@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Header from "./components/Header";
 import Title from "./components/Title";
 import Card from "./components/Content/Card";
@@ -6,6 +6,7 @@ import CheckImage from "./components/Content/checkImage";
 import DialogBox from "./components/dialog-box";
 import ImageCard from "./components/Content/ImageCard";
 import Images from "./components/Images";
+import { ImagesContainer } from "./components/ImagesContainer";
 
 function App() {
     const [albumName, setAlbumName] = useState("");
@@ -13,29 +14,38 @@ function App() {
     const [albumsArray, setAlbumsArray] = useState([]);
     const [showCheckImage, setShowCheckImage] = useState(false);
     const [showTItleBar, setShowTItleBar] = useState(true);
-    const [showAddImageBox, setShowAddImageBox] = useState(false);
+    const [showAddImageContainer, setShowAddImageContainer] = useState(false);
     const [currentAlbumName, setCurrentAlbumName] = useState("");
-    const [showImagesContainer, setshowImagesContainer] = useState(false);
+    const [showImageBar, setShowImageBar] = useState(false);
     const [isAddingImage, setIsAddingImage] = useState(false);
     const [title, setTitle] = useState("");
     const [titleArray, setTitleArray] = useState([]);
     const [imageURL, setImageURL] = useState("");
     const [imagesArray, setImagesArray] = useState([]);
+    const [showImagesContainer, setShowImagesContainer]=useState(false);
+    const [cardImageArray, setCardImageArray] = useState([]);
+
+    // Effect to log updates to cardImageArray
+    useEffect(() => {
+        console.log("Updated cardImageArray:", cardImageArray);
+    }, [cardImageArray]);
+
+    const handleAddImageContainer = () => {
+        setShowAddImageContainer(true);
+    };
+
     const handleAddImages = () => {
+        setShowImagesContainer(true); 
+        console.log("show add image container");
+
+
         if (imageURL.trim() && title.trim()) {
-            setImagesArray((prevImages) => [...prevImages, imageURL]);
-            setTitleArray((prevTitles) => [...prevTitles, title]);
+            const newCardImageArray = { title, imageURL };
+            setCardImageArray((prev) => [...prev, newCardImageArray]);
             setImageURL("");
             setTitle("");
-            alert("Image and Title added successfully!");
-            setshowImagesContainer(true);
-            console.log("showImagesContainer is now true");
-
-
         } else {
-            alert("Please enter a valid title and image URL.");
-            console.log("Image or title invalid");
-
+            alert("Please enter a valid title or image URL.");
         }
     };
 
@@ -60,26 +70,32 @@ function App() {
     };
 
     const handleGoBack = () => {
+
         setShowDialogBox(true);
         setShowCheckImage(false);
-        setShowAddImageBox(false);
-        setshowImagesContainer(false);
+        setShowAddImageContainer(false);
+        setShowImageBar(false);
         setIsAddingImage(false);
     };
 
     const handleReturn = () => {
+        setShowImagesContainer(false);
         setShowDialogBox(true);
-        setShowAddImageBox(false);
+        setShowAddImageContainer(false);
         setShowCheckImage(false);
     };
 
     const handleOnCardClick = (albumName) => {
+        console.log('Album clicked:', albumName);
+        if (cardImageArray.length > 0) {
+            setShowImagesContainer(true);
+        }
         setCurrentAlbumName(albumName);
         setShowCheckImage((prev) => !prev);
         setShowDialogBox((prev) => !prev);
     };
 
-    const handleCreate = () => {
+    const handleCreateAlbum = () => {
         if (albumName.trim()) {
             setAlbumsArray([...albumsArray, albumName]);
             setAlbumName("");
@@ -112,7 +128,7 @@ function App() {
                     handleClose={handleClose}
                     handleInputChange={handleInputChange}
                     handleClear={handleClear}
-                    handleCreate={handleCreate}
+                    handleCreate={handleCreateAlbum}
                 />
             )}
 
@@ -127,13 +143,12 @@ function App() {
 
             {showCheckImage && (
                 <CheckImage
-                    handleAddImage={() => setShowAddImageBox(true)}
-                    showAddImageBox={showAddImageBox}
+                    handleAddImageContainer={handleAddImageContainer}
                     handleReturn={handleReturn}
                 />
             )}
 
-            {showAddImageBox && (
+            {showAddImageContainer && (
                 <ImageCard
                     currentAlbumName={currentAlbumName}
                     handleAddImages={handleAddImages}
@@ -145,10 +160,20 @@ function App() {
                 />
             )}
 
-            {showImagesContainer && (<Images handleGoBack={handleGoBack}
-                                            title ={title}
-                                            imageURL={imageURL}
-             />)}
+            {showImageBar && (
+                <Images
+                    handleGoBack={handleGoBack}
+                />
+            )}
+
+{showImagesContainer && cardImageArray.map((imageTitle, index) => (
+    <ImagesContainer
+        key={index}
+        title={imageTitle.title}
+        image={imageTitle.imageURL}
+    />
+))}
+
         </div>
     );
 }

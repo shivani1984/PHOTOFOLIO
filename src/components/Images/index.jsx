@@ -3,7 +3,7 @@ import { Button } from "@mui/material";
 import "./index.css";
 
 
-export default function Images({handleGoBack, title, imageURL}){
+export default function Images({handleGoBack}){
 
     return(
 
@@ -15,7 +15,7 @@ export default function Images({handleGoBack, title, imageURL}){
             <div className="pointer" onClick ={handleGoBack}>goBack</div>
 
 
-                <div>images in {title}</div>
+                <div>images in this album</div>
                 <div>search</div>
                 <div><Button variant="outlined"
                     >
@@ -25,16 +25,11 @@ export default function Images({handleGoBack, title, imageURL}){
 
 
             </div>
-            
             <div></div>
-        </div>
-        <div>
-            <div className="images">
-             {}</div>
         </div>
 
         </div>
-        
+
         </>
     )
 }
