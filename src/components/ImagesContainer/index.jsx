@@ -6,9 +6,11 @@ export function ImagesContainer({ title, image }) {
         <>
         <div className="images">
             <div>
+            <div>
                 <img alt={`image of ${title}`} src={image} />
             </div>
             <div>{title}</div>
+        </div>
         </div>
         </>
     );

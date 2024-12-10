@@ -1,38 +1,36 @@
+.images-row {
+    display: flex;
+    flex-wrap: wrap;
+    /* Allows wrapping of images if there’s not enough space */
+    justify-content: space-evenly;
+    /* Even space between images */
+    gap: 10px;
+    /* Adjust the gap between images */
+}
+
 .images {
     display: flex;
     flex-direction: column;
+    /* Stack title and image vertically */
     align-items: center;
     justify-content: center;
     border: 1px solid #ddd;
-    /* Light border */
     border-radius: 8px;
-    /* Rounded corners */
     padding: 10px;
-    /* Padding inside the card */
-    margin: 10px;
-    /* Space between cards */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    /* Light shadow */
     width: 220px;
-    /* Set width for the card */
+    margin: 0;
 }
 
 .images img {
     width: 100%;
-    /* Make the image fill the width of the card */
     border-radius: 5px;
-    /* Rounded corners for the image */
     object-fit: cover;
-    /* Ensure image covers the area without distortion */
 }
 
 .images div {
     margin-top: 10px;
-    /* Space between image and title */
     font-size: 14px;
-    /* Font size for the title */
     font-weight: bold;
-    /* Bold title */
     text-align: center;
-    /* Center the title */
 }
