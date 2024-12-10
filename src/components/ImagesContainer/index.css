@@ -1,0 +1,36 @@
+.images-row {
+    display: flex;
+    flex-wrap: wrap;
+    /* Allows wrapping of images if there’s not enough space */
+    justify-content: space-evenly;
+    /* Even space between images */
+    gap: 10px;
+    /* Adjust the gap between images */
+}
+
+.images {
+    display: flex;
+    flex-direction: column;
+    /* Stack title and image vertically */
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 220px;
+    margin: 0;
+}
+
+.images img {
+    width: 100%;
+    border-radius: 5px;
+    object-fit: cover;
+}
+
+.images div {
+    margin-top: 10px;
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+}

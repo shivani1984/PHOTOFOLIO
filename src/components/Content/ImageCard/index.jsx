@@ -2,11 +2,10 @@ import React, { useState } from "react";
 import Button from "@mui/material/Button";
 import "./index.css";
 
-export default function ImageCard({ currentAlbumName, handleAddImage, handleTitle, title, handleImageURL, imageURL, handleClear }) {
+export default function ImageCard({ currentAlbumName, handleAddImages, handleTitle, title, handleImageURL, imageURL, handleClear }) {
 
-    
 
-    
+
 
 
     return (
@@ -44,7 +43,7 @@ export default function ImageCard({ currentAlbumName, handleAddImage, handleTitl
                         </Button>
                     </div>
                     <div>
-                        <Button variant="contained" onClick={handleAddImage}>
+                        <Button variant="contained" onClick={handleAddImages}>
                             Add
                         </Button>
                     </div>
