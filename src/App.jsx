@@ -24,6 +24,7 @@ function App() {
     const [imagesArray, setImagesArray] = useState([]);
     const [showImagesContainer, setShowImagesContainer]=useState(false);
     const [cardImageArray, setCardImageArray] = useState([]);
+    const [showCard, setShowCard ] = useState(false);
 
     // Effect to log updates to cardImageArray
     useEffect(() => {
@@ -32,6 +33,9 @@ function App() {
 
     const handleAddImageContainer = () => {
         setShowAddImageContainer(true);
+        setShowCheckImage(false);
+        setShowCard(false);
+
     };
 
     const handleAddImages = () => {
@@ -60,14 +64,10 @@ function App() {
 
     const handleImageURL = (e) => {
         const url = e.target.value;
-        const urlPattern = /^(https?:\/\/.*\.(png|jpg|jpeg|gif|svg|webp))$/i;
-
-        if (urlPattern.test(url)) {
-            setImageURL(url);
-        } else {
-            alert("Please enter a valid image URL (e.g., ending with .png, .jpg).");
-        }
+        // Simply set the image URL without any validation
+        setImageURL(url);
     };
+    
 
     const handleGoBack = () => {
 
@@ -83,6 +83,8 @@ function App() {
         setShowDialogBox(true);
         setShowAddImageContainer(false);
         setShowCheckImage(false);
+        setShowCard(true);
+
     };
 
     const handleOnCardClick = (albumName) => {
@@ -91,14 +93,18 @@ function App() {
             setShowImagesContainer(true);
         }
         setCurrentAlbumName(albumName);
-        setShowCheckImage((prev) => !prev);
-        setShowDialogBox((prev) => !prev);
+        setShowCheckImage(true);
+        setShowDialogBox(false);
+        setShowCard(false);
+
     };
 
     const handleCreateAlbum = () => {
         if (albumName.trim()) {
             setAlbumsArray([...albumsArray, albumName]);
             setAlbumName("");
+            setShowCard(true);
+
         } else {
             alert("Please enter a valid album name!");
         }
@@ -132,13 +138,13 @@ function App() {
                 />
             )}
 
-            {!showCheckImage && !isAddingImage &&
+            {showCard && (
                 albumsArray.map((albumName, index) => (
                     <Card
                         key={index}
                         albumName={albumName}
                         handleOnCardClick={handleOnCardClick}
-                    />
+                    />)
                 ))}
 
             {showCheckImage && (

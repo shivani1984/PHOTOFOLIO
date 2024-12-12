@@ -7,7 +7,7 @@ export default function CheckImage({handleAddImageContainer, showAddImageContain
     return (
         <>
             <div className="imageContainer">
-                <div className="image" onClick={handleReturn}> goBack</div>
+                <div className="image" onClick={handleReturn}> return</div>
                 <div className="noImageFound"><h1>No image found in the album</h1></div>
                 <div className="button">
                     <Button variant="outlined"
