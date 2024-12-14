@@ -1,0 +1,10 @@
+.images-title {
+    display: flex;
+    justify-content: space-evenly;
+    /* Evenly distribute space around items */
+    /* Add space between divs */
+}
+
+.back {
+    cursor: pointer;
+}

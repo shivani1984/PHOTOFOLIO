@@ -7,6 +7,7 @@ import DialogBox from "./components/dialog-box";
 import ImageCard from "./components/Content/ImageCard";
 import Images from "./components/Images";
 import { ImagesContainer } from "./components/ImagesContainer";
+import ImagesTitle from "./components/Content/ImagesTitle";
 
 function App() {
     const [albumName, setAlbumName] = useState("");
@@ -22,30 +23,42 @@ function App() {
     const [titleArray, setTitleArray] = useState([]);
     const [imageURL, setImageURL] = useState("");
     const [imagesArray, setImagesArray] = useState([]);
-    const [showImagesContainer, setShowImagesContainer]=useState(false);
-    const [cardImageArray, setCardImageArray] = useState([]);
-    const [showCard, setShowCard ] = useState(false);
+    const [showImagesContainer, setShowImagesContainer] = useState(false);
+    const [showCard, setShowCard] = useState(false);
+    const [showImagesTitle, setShowImagesTitle] = useState(false);
+    const [albumImages, setAlbumImages] = useState({}); // Object to store images for each album
+
 
     // Effect to log updates to cardImageArray
-    useEffect(() => {
-        console.log("Updated cardImageArray:", cardImageArray);
-    }, [cardImageArray]);
+   
 
     const handleAddImageContainer = () => {
         setShowAddImageContainer(true);
-        setShowCheckImage(false);
         setShowCard(false);
-
     };
 
-    const handleAddImages = () => {
-        setShowImagesContainer(true); 
-        console.log("show add image container");
+    const handleBack=()=>{
+        setShowCard(true);
+        setShowAddImageContainer(false);
+        setShowImagesTitle(false);
+        setShowImagesContainer(false);
+        setShowTItleBar(true);
+    }
 
+    const handleAddImages = () => {
+        setShowImagesContainer(true);
+        setShowImagesTitle(true);
+        setShowCheckImage(false);
 
         if (imageURL.trim() && title.trim()) {
-            const newCardImageArray = { title, imageURL };
-            setCardImageArray((prev) => [...prev, newCardImageArray]);
+            const newImage = { title, imageURL };
+
+            setAlbumImages((prev) => ({
+                ...prev,
+                [currentAlbumName]: [...(prev[currentAlbumName] || []), newImage],
+            }));
+
+
             setImageURL("");
             setTitle("");
         } else {
@@ -64,13 +77,10 @@ function App() {
 
     const handleImageURL = (e) => {
         const url = e.target.value;
-        // Simply set the image URL without any validation
         setImageURL(url);
     };
-    
 
     const handleGoBack = () => {
-
         setShowDialogBox(true);
         setShowCheckImage(false);
         setShowAddImageContainer(false);
@@ -84,18 +94,20 @@ function App() {
         setShowAddImageContainer(false);
         setShowCheckImage(false);
         setShowCard(true);
-
     };
 
     const handleOnCardClick = (albumName) => {
-        console.log('Album clicked:', albumName);
-        if (cardImageArray.length > 0) {
-            setShowImagesContainer(true);
-        }
+        
+        setShowImagesContainer(true);
+        setShowAddImageContainer(false);
+
         setCurrentAlbumName(albumName);
         setShowCheckImage(true);
         setShowDialogBox(false);
         setShowCard(false);
+        setShowTItleBar(false);
+        setShowImagesContainer(false);
+
 
     };
 
@@ -104,7 +116,6 @@ function App() {
             setAlbumsArray([...albumsArray, albumName]);
             setAlbumName("");
             setShowCard(true);
-
         } else {
             alert("Please enter a valid album name!");
         }
@@ -144,8 +155,9 @@ function App() {
                         key={index}
                         albumName={albumName}
                         handleOnCardClick={handleOnCardClick}
-                    />)
-                ))}
+                    />
+                ))
+            )}
 
             {showCheckImage && (
                 <CheckImage
@@ -172,14 +184,26 @@ function App() {
                 />
             )}
 
-{showImagesContainer && cardImageArray.map((imageTitle, index) => (
-    <ImagesContainer
-        key={index}
-        title={imageTitle.title}
-        image={imageTitle.imageURL}
-    />
-))}
 
+            {showImagesTitle && <ImagesTitle 
+                                currentAlbumName={currentAlbumName}
+                                handleBack ={handleBack}
+            />}
+
+{showImagesContainer && (
+                <div>
+                    <h2>Images in {currentAlbumName}</h2>
+                    {(albumImages[currentAlbumName] || []).map((image, index) => (
+                        <ImagesContainer
+                            key={index}
+                            title={image.title}
+                            image={image.imageURL}
+                        />
+                    ))}
+                </div>
+            )}
+
+           
         </div>
     );
 }
