@@ -29,9 +29,7 @@ const DialogBox = ({ albumName, handleInputChange, handleClose, handleClear, han
                 </div>
             </div>
             <div className="cancelButton">
-                <button className="button cancel-button" onClick={handleClose}>
-                    Cancel
-                </button>
+                
             </div>
         </>
     );

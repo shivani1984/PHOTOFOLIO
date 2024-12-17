@@ -8,11 +8,12 @@ import ImageCard from "./components/Content/ImageCard";
 import Images from "./components/Images";
 import { ImagesContainer } from "./components/ImagesContainer";
 import ImagesTitle from "./components/Content/ImagesTitle";
+import ImageGalleryFolder from "./components/ImageGalleryFolder";
 
 function App() {
     const [albumName, setAlbumName] = useState("");
     const [showDialogBox, setShowDialogBox] = useState(false);
-    const [albumsArray, setAlbumsArray] = useState([]);
+    const [albumsArray, setAlbumsArray] = useState(["test album 1", "test album 2"]);
     const [showCheckImage, setShowCheckImage] = useState(false);
     const [showTItleBar, setShowTItleBar] = useState(true);
     const [showAddImageContainer, setShowAddImageContainer] = useState(false);
@@ -26,10 +27,16 @@ function App() {
     const [showImagesContainer, setShowImagesContainer] = useState(false);
     const [showCard, setShowCard] = useState(true);
     const [showImagesTitle, setShowImagesTitle] = useState(false);
-    const [albumImages, setAlbumImages] = useState({}); // Object to store images for each album
+    const [albumImages, setAlbumImages] = useState({});
+    const [showImageGallery, setShowImageGallery] = useState(false);
 
 
     // Effect to log updates to cardImageArray
+
+
+    const handleDialogBox =()=>{
+        setShowDialogBox(false);
+    }
    
 
     const handleAddImageContainer = () => {
@@ -94,6 +101,7 @@ function App() {
         setShowAddImageContainer(false);
         setShowCheckImage(false);
         setShowCard(true);
+        setShowImageGallery(true);
     };
 
     const handleOnCardClick = (albumName) => {
@@ -107,6 +115,7 @@ function App() {
         setShowCard(false);
         setShowTItleBar(false);
         setShowImagesContainer(false);
+        setShowImageGallery(false);
 
 
     };
@@ -124,6 +133,7 @@ function App() {
     const handleAddAlbum = () => {
         setShowDialogBox(true);
         setShowTItleBar(false);
+        setShowImageGallery(true);
     };
 
     const handleClose = () => {
@@ -135,9 +145,11 @@ function App() {
     };
 
     return (
-        <div>
+        <>
+
+
             <Header />
-            {showTItleBar && <Title onOpen={handleAddAlbum} />}
+            {showTItleBar && <Title handleAddAlbum={handleAddAlbum} />}
 
             {showDialogBox && (
                 <DialogBox
@@ -149,15 +161,22 @@ function App() {
                 />
             )}
 
+{showImageGallery && (<ImageGalleryFolder
+               handleDialogBox ={handleDialogBox}
+               showDialogBox={showDialogBox}
+               handleAddAlbum ={handleAddAlbum}
+
+/>)}
+
+
+
             {showCard && (
-                albumsArray.map((albumName, index) => (
                     <Card
-                        key={index}
-                        albumName={albumName}
+                        albumsArray={albumsArray}
                         handleOnCardClick={handleOnCardClick}
                     />
-                ))
-            )}
+                )
+            }
 
             {showCheckImage && (
                 <CheckImage
@@ -185,10 +204,11 @@ function App() {
             )}
 
 
-            {showImagesTitle && <ImagesTitle 
+{showImagesTitle && <ImagesTitle 
                                 currentAlbumName={currentAlbumName}
-                                handleBack ={handleBack}
-            />}
+                                handleBack={handleBack}
+/>}
+
 
 {showImagesContainer && (
                 <div>
@@ -204,7 +224,7 @@ function App() {
             )}
 
            
-        </div>
+        </>
     );
 }
 

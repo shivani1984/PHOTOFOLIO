@@ -1,24 +1,41 @@
-        .card {
-            width: 12rem;
-            height: 12rem;
-            background-color: gainsboro;
-            border-radius: 5px;
-            padding: 5px;
-        }
-        
-        .card:hover {
-            background-color: cornflowerblue;
-        }
-        
-        .card-image {
-            background-color: white;
-            width: 12rem;
-            height: 9rem;
-            border-radius: 5px;
-        }
-        
-        .cardContainer {
-            padding-left: 150px;
-            padding-right: 150px;
-            padding-top: 10px;
-        }
+                /* index.css */
+                
+                .cardContainer {
+                    display: grid;
+                    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+                    gap: 30px;
+                    grid-auto-flow: row;
+                    grid-auto-rows: 150px;
+                    grid-template: repeat(1, 150px) /repeat(auto-fit, minmax(150px, .5fr));
+                    margin-bottom: 100px;
+                }
+                
+                .card {
+                    display: flex;
+                    align-items: center;
+                    border: 5px solid #eee;
+                    border-top-left-radius: 10px;
+                    border-top-right-radius: 10px;
+                    cursor: pointer;
+                    flex-direction: column;
+                    height: 100%;
+                    justify-content: flex-end;
+                    margin-block: 30px;
+                    transition: border-color .3s;
+                    width: 100%;
+                }
+                
+                .card img {
+                    margin-bottom: 30px;
+                    width: 50px;
+                }
+                
+                .card span {
+                    background-color: #eee;
+                    font-size: 1.1rem;
+                    font-weight: 700;
+                    padding-block: 5px;
+                    text-align: center;
+                    transition: .3s;
+                    width: 100%;
+                }
