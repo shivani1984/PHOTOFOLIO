@@ -1,6 +1,8 @@
 .header {
     display: flex;
-    background-color: lightskyblue;
+    background-color: #a0a0f9;
+    height: 70px;
+    font-family: "Poppins", sans-serif;
 }
 
 .image img {
@@ -10,4 +12,17 @@
     /* Maintains aspect ratio */
     margin-left: 40px;
     margin-right: 10px;
+}
+
+.header-logo {
+    align-items: center;
+    cursor: pointer;
+    display: flex;
+    gap: 10px;
+    height: 100%;
+    margin-left: 50px;
+}
+
+.header-logo img {
+    height: 70%;
 }
