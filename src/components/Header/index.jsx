@@ -6,8 +6,11 @@ import "./index.css";
 function Header() {
     return (
         <div className='header'>
-            <div className='image'><img src ="https://cdn-icons-png.flaticon.com/128/3979/3979360.png  " alt ="photo album" /></div>
+            <div className='header-logo'>
+            <img src="https://mellow-seahorse-fc9268.netlify.app/assets/logo.png
+"  alt ="logo" />
             <h3>Photo Folio</h3>
+            </div>
         </div>
     );
 }

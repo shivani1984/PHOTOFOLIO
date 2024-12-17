@@ -1,37 +1,37 @@
 import React from "react";
-import Button from '@mui/material/Button';
 import "./index.css";
 
 const DialogBox = ({ albumName, handleInputChange, handleClose, handleClear, handleCreate }) => {
     return (
         <>
             <div className="container">
-                <h1>Create an Album</h1>
+                <span>Create an Album</span>
                 <div className="buttons">
+                    
                     <input
                         type="text"
                         placeholder="Album Name"
                         className="input"
                         autoFocus
                         value={albumName} // Controlled input
-                        onChange={handleInputChange}
+                        onChange={handleInputChange} // Handles input changes
                     />
-                    <div className="clear-button">
-                        <Button variant="contained" onClick={handleClear}>
+                    <div>
+                        <button className="red-btn solid-btn" onClick={handleClear}>
                             Clear
-                        </Button>
+                        </button>
                     </div>
                     <div>
-                        <Button variant="contained" onClick={handleCreate}>
+                        <button className="blue-btn solid-btn" onClick={handleCreate}>
                             Create
-                        </Button>
+                        </button>
                     </div>
                 </div>
             </div>
             <div className="cancelButton">
-                <Button variant="outlined" onClick={handleClose}>
+                <button className="button cancel-button" onClick={handleClose}>
                     Cancel
-                </Button>
+                </button>
             </div>
         </>
     );

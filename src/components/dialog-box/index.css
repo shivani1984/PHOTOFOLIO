@@ -1,31 +1,65 @@
 .buttons {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
+    gap: 10px;
+    align-items: center;
+    margin-top: 10px;
 }
 
 .container {
-    background-color: lightgrey;
+    background-color: #f4f4f4;
     padding: 20px;
-    width: 50%;
-    margin-left: 280px;
     border-radius: 10px;
-    margin-top: 50px;
+    box-shadow: 0 2px 8px 0 rgba(99, 99, 99, .2);
+    margin: 50px auto 30px;
+    width: 50vw;
+    display: flex;
+    flex-direction: column;
+    font-family: "Poppins", sans-serif;
+}
+
+.container span {
+    font-size: 1.7rem;
+    font-weight: 700;
 }
 
 .input {
-    width: 400px;
-    /* Adjust width as needed */
-    height: 45px;
-    /* Adjust height as needed */
-    padding: 0 15px;
-    /* Horizontal padding */
-    border-radius: 20px;
-    /* Rounded corners */
-    border: 1px solid #dcdcdc;
-    /* Light gray border */
-    font-size: 16px;
-    /* Font size */
-    margin-right: 10px;
+    width: 60%;
+    padding: 010px 10px 10px 15px;
+    border-radius: 30px;
+    border: 3px solid transparent;
+    font-size: 1.2rem;
+    font-weight: 300;
+    outline: none;
+    transition: .3s;
+}
+
+.red-btn {
+    background-color: red;
+}
+
+.blue-btn {
+    background-color: #07f;
+}
+
+.solid-btn {
+    border: none;
+    border-radius: 7px;
+    color: #fff;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, .24);
+    cursor: pointer;
+    font-size: 1.1rem;
+    font-weight: 600;
+    outline: none;
+    padding-block: 7px;
+    width: 100px;
+    font-family: "Poppins", sans-serif;
+    ;
+}
+
+input:focus {
+    border-color: #07f;
+    /* Change border color to blue on focus */
 }
 
 .cancelButton {

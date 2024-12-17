@@ -24,7 +24,7 @@ function App() {
     const [imageURL, setImageURL] = useState("");
     const [imagesArray, setImagesArray] = useState([]);
     const [showImagesContainer, setShowImagesContainer] = useState(false);
-    const [showCard, setShowCard] = useState(false);
+    const [showCard, setShowCard] = useState(true);
     const [showImagesTitle, setShowImagesTitle] = useState(false);
     const [albumImages, setAlbumImages] = useState({}); // Object to store images for each album
 
