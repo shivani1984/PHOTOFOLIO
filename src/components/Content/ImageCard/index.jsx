@@ -1,54 +1,60 @@
-import React, { useState } from "react";
-import Button from "@mui/material/Button";
+import React from "react";
 import "./index.css";
 
-export default function ImageCard({ currentAlbumName, handleAddImages, handleTitle, title, handleImageURL, imageURL, handleClear }) {
-
-
-
-
+export default function ImageCard({
+    currentAlbumName,
+    handleAddImages,
+    handleTitle,
+    title,
+    handleImageURL,
+    imageURL,
+    handleClear,
+}) {
+    // Prevent default form submission
+    const handleSubmit = (event) => {
+        event.preventDefault(); // Prevent the form from reloading the page
+    };
 
     return (
-        <>
-            <div className="AddImage">
-                <div>
-                    <h1>Add image to {currentAlbumName}</h1>
-                </div>
+        <div className="AddImage">
+            <span>
+                <h1>Add image to {currentAlbumName}</h1>
+            </span>
 
-                <div>
-                    <div className="InputField">
-                        <input
-                            type="url"
-                            placeholder="Title"
-                            className="input"
-                            value={title}
-                            onChange={handleTitle}
-                        />
-                    </div>
-                    <div className="InputField">
-                        <input
-                            type="url"
-                            placeholder="Image URL"
-                            className="input"
-                            value={imageURL}
-                            onChange={handleImageURL}
-                        />
-                    </div>
-                </div>
+            {/* Attach handleSubmit to the form */}
+            <form onSubmit={handleSubmit}>
+                <input
+                    type="text"
+                    placeholder="Title"
+                    className="input"
+                    value={title}
+                    onChange={handleTitle}
+                />
+                <input
+                    type="url"
+                    placeholder="Image URL"
+                    className="input"
+                    value={imageURL}
+                    onChange={handleImageURL}
+                />
 
                 <div className="btns">
-                    <div>
-                        <Button variant="contained" onClick={handleClear}>
-                            Clear
-                        </Button>
-                    </div>
-                    <div>
-                        <Button variant="contained" onClick={handleAddImages}>
-                            Add
-                        </Button>
-                    </div>
+                    <button
+                        type="button" // Prevent form submission
+                        onClick={handleClear}
+                        className="red-btn solid-btn"
+                    >
+                        Clear
+                    </button>
+                    <button
+                        type="button" // Prevent form submission
+                        onClick={handleAddImages}
+                        className="blue-btn solid-btn"
+                    >
+                        Add
+                    </button>
                 </div>
-            </div>
-        </>
+            </form>
+        </div>
     );
 }

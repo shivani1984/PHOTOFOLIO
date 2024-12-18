@@ -8,9 +8,9 @@ export default function ImageGalleryFolder({ handleDialogBox, showDialogBox, han
                 <h3>Your Albums</h3>
                 <button 
                     className="outlineBtn" 
-                    onClick={showDialogBox ? handleDialogBox : handleAddAlbum}
+                    onClick={handleDialogBox}
                 >
-                    {showDialogBox ? "Cancel" : "Add album"}
+                    Cancel
                 </button>
             </div>
         </>

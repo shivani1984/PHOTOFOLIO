@@ -1,4 +1,3 @@
-import { Button } from "@mui/material";
 import React from "react";
 import "./index.css";
 import App from "../../../App";
@@ -7,15 +6,21 @@ export default function CheckImage({handleAddImageContainer, showAddImageContain
     return (
         <>
             <div className="imageContainer">
-                <div className="image" onClick={handleReturn}> return</div>
+                <span>
+                    <img src="https://mellow-seahorse-fc9268.netlify.app/assets/back.png" alt="back"
+                    onClick={handleReturn}
+                    />
+                </span>
                 <div className="noImageFound"><h1>No image found in the album</h1></div>
-                <div className="button">
-                    <Button variant="outlined"
-                      onClick={handleAddImageContainer}
+                    <button onClick={handleAddImageContainer}
+                            className={showAddImageContainer ? "outlineBtn red" :"outlineBtn"}
                     >
+                        
+                    
+
+                    
                         {showAddImageContainer ? "Cancel" : "Add Image"}
-                    </Button>
-                </div>
+                    </button>
             </div>
         </>
     );
