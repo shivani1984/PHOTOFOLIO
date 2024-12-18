@@ -6,7 +6,7 @@ export default function Title({ handleAddAlbum}) {
         <>
             <div className="addAlbum">
                 <h3>Yours albums</h3>
-                <button className="outlineBtn" onClick={handleAddAlbum}>  Add album</button>
+                <button className="outlineBtn " onClick={handleAddAlbum}>  Add album</button>
                 
             </div>
         </>

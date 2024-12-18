@@ -1,9 +1,26 @@
 .imageContainer {
     display: flex;
-    justify-content: space-evenly;
+    align-items: center;
+    justify-content: space-between;
+    margin-block: 30px;
+}
+
+.imageContainer span img {
+    width: 30px;
+}
+
+.imageContainer h3 {
+    font-size: 1.7rem;
+    font-weight: 700;
 }
 
 .image {
     margin-top: 30px;
     cursor: pointer;
+}
+
+.red {
+    background-color: rgba(255, 19, 0, .1);
+    border: 2px solid #ff1300;
+    color: #ff1300;
 }

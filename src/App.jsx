@@ -36,11 +36,15 @@ function App() {
 
     const handleDialogBox =()=>{
         setShowDialogBox(false);
+        setShowImageGallery(false);
+        setShowTItleBar(true);
+        setShowImagesContainer(false);
     }
    
 
     const handleAddImageContainer = () => {
-        setShowAddImageContainer(true);
+        setShowAddImageContainer((prev)=> !prev);
+
         setShowCard(false);
     };
 
@@ -182,6 +186,8 @@ function App() {
                 <CheckImage
                     handleAddImageContainer={handleAddImageContainer}
                     handleReturn={handleReturn}
+                    showAddImageContainer={showAddImageContainer}
+
                 />
             )}
 
