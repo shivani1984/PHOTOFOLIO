@@ -1,0 +1,32 @@
+.images-title {
+    display: flex;
+    align-items: center;
+    margin-block: 30px;
+    justify-content: space-between;
+    background-color: red;
+}
+
+.back {
+    cursor: pointer;
+}
+
+.images-title span img {
+    width: 50px;
+    align-items: center;
+    display: flex;
+    border-radius: 50%;
+    background-color: #fcfcfc;
+    cursor: pointer;
+    margin-right: 30px;
+    box-shadow: ;
+}
+
+.images-title h3 {
+    font-size: 1.7rem;
+    font-weight: 700;
+}
+
+.search img {
+    width: 30px;
+    cursor: pointer;
+}
