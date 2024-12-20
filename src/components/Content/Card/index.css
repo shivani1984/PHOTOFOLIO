@@ -2,11 +2,10 @@
                 
                 .cardContainer {
                     display: grid;
-                    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+                    grid-template: repeat(auto-fit, 150px) / repeat(auto-fit, 150px);
                     gap: 30px;
-                    grid-auto-flow: row;
-                    grid-auto-rows: 150px;
-                    grid-template: repeat(1, 150px) /repeat(auto-fit, minmax(150px, .5fr));
+                    margin: 0 auto;
+                    max-width: 1024px;
                     margin-bottom: 100px;
                 }
                 
@@ -22,7 +21,7 @@
                     justify-content: flex-end;
                     margin-block: 30px;
                     transition: border-color .3s;
-                    width: 100%;
+                    max-width: 200px;
                 }
                 
                 .card img {

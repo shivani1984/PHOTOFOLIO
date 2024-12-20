@@ -1,17 +1,24 @@
 import React from "react";
 import "./index.css";
 
-export function ImagesContainer({ title, image }) {
-    return (
-        <>
-        <div className="images">
+export function ImagesContainer({ currentAlbumName, albumImages }) {
+  return (
+    <>
+
+      <div className="images">
+        {(albumImages[currentAlbumName] || []).map((titleImg, index) => (
+          <div key={index} className="image-container">
             <div>
-            <div>
-                <img alt={`image of ${title}`} src={image} />
+              <img
+                alt={`Image of ${titleImg.title}`}
+                
+                className="image"
+              />
             </div>
-            <div>{title}</div>
-        </div>
-        </div>
-        </>
-    );
+            <div>{titleImg.title}</div>
+          </div>
+        ))}
+      </div>
+    </>
+  );
 }
