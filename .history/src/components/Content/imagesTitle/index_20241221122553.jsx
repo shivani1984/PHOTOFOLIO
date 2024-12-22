@@ -9,7 +9,7 @@ export default function ImagesTitle({
   handleSearch,
   showSearchBox,
   handleSearchQuery,
-  searchQuery
+  searchQuery,
 }) {
   return (
     <div className="images-title">
@@ -27,10 +27,7 @@ export default function ImagesTitle({
           <input
             placeholder="Search..."
             value={searchQuery}
-            onChange= {(e) =>{handleSearchQuery(e);
-            console.log("searchQuery :", e.target.value)
-          }}
-            
+            onChange={handleSearchQuery}
           />
         )}
 

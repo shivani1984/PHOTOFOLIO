@@ -27,9 +27,9 @@ export default function ImagesTitle({
           <input
             placeholder="Search..."
             value={searchQuery}
-            onChange= {(e) =>{handleSearchQuery(e);
+            onChange= {(e) => {handleSearchQuery};
             console.log("searchQuery :", e.target.value)
-          }}
+          }
             
           />
         )}
