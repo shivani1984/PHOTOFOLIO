@@ -11,6 +11,7 @@ import ImagesTitle from "./components/Content/ImagesTitle";
 import ImageGalleryFolder from "./components/ImageGalleryFolder";
 import "./index.css";
 
+
 function App() {
   const [albumName, setAlbumName] = useState("");
   const [showDialogBox, setShowDialogBox] = useState(false);
@@ -36,20 +37,22 @@ function App() {
   const [showImagesTitle, setShowImagesTitle] = useState(false);
   const [albumImages, setAlbumImages] = useState({});
   const [showImageGallery, setShowImageGallery] = useState(false);
-  const [showSearchBox, setShowSearchBox] = useState(false);
-  const [searchQuery, setSearchQuery] = useState("");
+  const[showSearchBox, setShowSearchBox] = useState(false);
+  const [searchQuery,setSearchQuery] = useState("");
 
-  const handleSearchQuery = (e) => {
-    setSearchQuery(e.target.value);
-  };
+
+  const handleSearchQuery= ()=>{
+    setSearchQuery(e.target.value)
+  }
 
   const handleImagesContainer = () => {
     setShowAddImageContainer((prev) => !prev);
   };
 
-  const handleSearch = () => {
-    setShowSearchBox((prev) => !prev);
-  };
+  const handleSearch =()=>{
+    setShowSearchBox((prev)=> !prev);
+
+  }
 
   const handleDialogBox = () => {
     setShowDialogBox(false);
@@ -219,10 +222,8 @@ function App() {
             handleBack={handleBack}
             handleImagesContainer={handleImagesContainer}
             showAddImageContainer={showAddImageContainer}
-            handleSearch={handleSearch}
+            handleSearch ={handleSearch}
             showSearchBox={showSearchBox}
-            handleSearchQuery={handleSearchQuery}
-            searchQuery={searchQuery}
           />
         )}
 

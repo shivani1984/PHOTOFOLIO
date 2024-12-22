@@ -29,7 +29,7 @@ export default function ImagesTitle({
             value={searchQuery}
             onChange= {(e) =>{handleSearchQuery(e);
             console.log("searchQuery :", e.target.value)
-          }}
+          }
             
           />
         )}
