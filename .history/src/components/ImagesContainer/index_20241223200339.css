@@ -27,10 +27,11 @@
     }
     
     .updateImg {
+        right: 30px;
         border: none;
         outline: none;
         position: absolute;
-        right: 100px;
+        right: -15px;
         top: -15px;
     }
     
