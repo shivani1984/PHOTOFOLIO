@@ -1,23 +1,21 @@
 import React, { useState, useEffect } from "react";
 import "./index.css";
 
-export function ImagesContainer({ currentAlbumName, albumImages }) {
-  const [image, setImage] = useState([]);
-
-  // Update the image state whenever currentAlbumName changes
-  useEffect(() => {
-    setImage(albumImages[currentAlbumName] || []);
-  }, [currentAlbumName, albumImages]);
-
-  const handleDelete = (index) => {
-    const updateImages = [...image]; // Create a copy of the image array
-    updateImages.splice(index, 1); // Remove the image at the given index
-    setImage(updateImages); // Update the state with the new array
-  };
+export function ImagesContainer({
+  currentAlbumName,
+  albumImages,
+  handleDeleteImageCard,
+  searchQuery,
+}) {
+  const images = albumImages[currentAlbumName] || [];
+  const filteredImages = images.filter((image) =>
+  image.title.toLowerCase().includes(searchQuery.toLowerCase())
+);
 
   return (
     <div className="images">
-      {(image || []).map((titleImg, index) => (
+            {(filteredImages || []).map((titleImg, index) => (
+
         <div key={index} className="image-container">
           <div className="updateImg">
             <img
@@ -25,7 +23,10 @@ export function ImagesContainer({ currentAlbumName, albumImages }) {
               alt="update"
             />
           </div>
-          <div className="deleteImg" onClick={() => handleDelete(index)}>
+          <div
+            className="deleteImg"
+            onClick={() => handleDeleteImageCard(index)}
+          >
             <img
               src="https://mellow-seahorse-fc9268.netlify.app/assets/trash-bin.png"
               alt="deleteImg"

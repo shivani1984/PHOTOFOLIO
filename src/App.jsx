@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState} from "react";
 import Header from "./components/Header";
 import Title from "./components/Title";
 import Card from "./components/Content/Card";
@@ -39,6 +39,14 @@ function App() {
   const [showSearchBox, setShowSearchBox] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
 
+  const handleDeleteImageCard = (index) => {
+    setAlbumImages((prev) => ({
+      ...prev,
+      [currentAlbumName]: prev[currentAlbumName].filter((_, i) => i !== index),
+    }));
+  };
+  
+
   const handleSearchQuery = (e) => {
     setSearchQuery(e.target.value);
   };
@@ -49,6 +57,7 @@ function App() {
 
   const handleSearch = () => {
     setShowSearchBox((prev) => !prev);
+    setSearchQuery("");
   };
 
   const handleDialogBox = () => {
@@ -222,7 +231,6 @@ function App() {
             handleSearch={handleSearch}
             showSearchBox={showSearchBox}
             handleSearchQuery={handleSearchQuery}
-            searchQuery={searchQuery}
           />
         )}
 
@@ -231,6 +239,9 @@ function App() {
             <ImagesContainer
               currentAlbumName={currentAlbumName}
               albumImages={albumImages}
+              handleDeleteImageCard={handleDeleteImageCard}
+                          searchQuery={searchQuery}
+
             />
           </>
         )}
