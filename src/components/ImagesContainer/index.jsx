@@ -6,6 +6,10 @@ export function ImagesContainer({
   albumImages,
   handleDeleteImageCard,
   searchQuery,
+  handleUpdateCard
+
+  
+  
 }) {
   const images = albumImages[currentAlbumName] || [];
   const filteredImages = images.filter((image) =>
@@ -17,7 +21,8 @@ export function ImagesContainer({
             {(filteredImages || []).map((titleImg, index) => (
 
         <div key={index} className="image-container">
-          <div className="updateImg">
+          <div className="updateImg"
+          onClick={() => handleUpdateCard(index)}>
             <img
               src="https://mellow-seahorse-fc9268.netlify.app/assets/edit.png"
               alt="update"

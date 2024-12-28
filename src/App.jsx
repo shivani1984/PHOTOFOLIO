@@ -1,4 +1,4 @@
-import React, { useState} from "react";
+import React, { useState } from "react";
 import Header from "./components/Header";
 import Title from "./components/Title";
 import Card from "./components/Content/Card";
@@ -10,6 +10,7 @@ import { ImagesContainer } from "./components/ImagesContainer";
 import ImagesTitle from "./components/Content/ImagesTitle";
 import ImageGalleryFolder from "./components/ImageGalleryFolder";
 import "./index.css";
+import UpdateImage from "./components/updateImage";
 
 function App() {
   const [albumName, setAlbumName] = useState("");
@@ -38,6 +39,33 @@ function App() {
   const [showImageGallery, setShowImageGallery] = useState(false);
   const [showSearchBox, setShowSearchBox] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
+  const [updateBox, setUpdateBox] = useState(false);
+  const [updateValue, setUpdateValue] = useState("");
+  const [updateImage, setUpdateImage] = useState("");
+  const [updatedTitle, setUpdatedTitle] =useState("");
+
+  const handleUpdatedTitle = (e) => {
+    setUpdateValue(e.target.value); 
+  };
+  
+
+  const handleClean =()=>{
+    setUpdateValue("");
+    setUpdateImage("");
+
+  }
+
+  const handleUpdateCard = (index) => {
+    setUpdateBox(true);
+    setShowAddImageContainer(false);
+  
+    const newValue = albumImages[currentAlbumName][index]?.title;
+    const newValueImg = albumImages[currentAlbumName][index]?.imageURL;
+  
+    setUpdateValue(newValue);
+    setUpdateImage(newValueImg);
+  };
+  
 
   const handleDeleteImageCard = (index) => {
     setAlbumImages((prev) => ({
@@ -45,7 +73,6 @@ function App() {
       [currentAlbumName]: prev[currentAlbumName].filter((_, i) => i !== index),
     }));
   };
-  
 
   const handleSearchQuery = (e) => {
     setSearchQuery(e.target.value);
@@ -79,6 +106,7 @@ function App() {
     setShowImagesTitle(false);
     setShowImagesContainer(false);
     setShowTItleBar(true);
+    setUpdateBox(false);
   };
 
   const handleAddImages = () => {
@@ -220,6 +248,13 @@ function App() {
           />
         )}
 
+        {updateBox && (
+          <UpdateImage updateValue={updateValue} updateImage={updateImage}
+          handleClean={handleClean}
+          handleUpdatedTitle ={handleUpdatedTitle}
+           />
+        )}
+
         {showImageBar && <Images handleGoBack={handleGoBack} />}
 
         {showImagesTitle && (
@@ -240,8 +275,8 @@ function App() {
               currentAlbumName={currentAlbumName}
               albumImages={albumImages}
               handleDeleteImageCard={handleDeleteImageCard}
-                          searchQuery={searchQuery}
-
+              searchQuery={searchQuery}
+              handleUpdateCard={handleUpdateCard}
             />
           </>
         )}
