@@ -6,23 +6,18 @@ export function ImagesContainer({
   albumImages,
   handleDeleteImageCard,
   searchQuery,
-  handleUpdateCard
-
-  
-  
+  handleUpdateCard,
 }) {
   const images = albumImages[currentAlbumName] || [];
   const filteredImages = images.filter((image) =>
-  image.title.toLowerCase().includes(searchQuery.toLowerCase())
-);
+    image.title.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
   return (
     <div className="images">
-            {(filteredImages || []).map((titleImg, index) => (
-
+      {(filteredImages || []).map((titleImg, index) => (
         <div key={index} className="image-container">
-          <div className="updateImg"
-          onClick={() => handleUpdateCard(index)}>
+          <div className="updateImg" onClick={() => handleUpdateCard(index)}>
             <img
               src="https://mellow-seahorse-fc9268.netlify.app/assets/edit.png"
               alt="update"
@@ -37,12 +32,12 @@ export function ImagesContainer({
               alt="deleteImg"
             />
           </div>
+          <span>{titleImg.title}</span>
           <img
             alt={`Image of ${titleImg.title}`}
-            src={titleImg.url} // Assuming each image object has a URL property
+            src={titleImg.url} // This will reflect the updated URL
             className="image"
           />
-          <span>{titleImg.title}</span>
         </div>
       ))}
     </div>

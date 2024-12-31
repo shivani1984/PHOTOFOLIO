@@ -40,32 +40,42 @@ function App() {
   const [showSearchBox, setShowSearchBox] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [updateBox, setUpdateBox] = useState(false);
-  const [updateValue, setUpdateValue] = useState("");
   const [updateImage, setUpdateImage] = useState("");
-  const [updatedTitle, setUpdatedTitle] =useState("");
+  const [updateTitle, setUpdateTitle] = useState("");
+  const [updatedTitle, setUpdatedTitle] = useState("");
+  const [updatedImage, setUpdatedImage] = useState("");
+  const [currentIndex, setCurrentIndex] = useState(null);
+
+  const handleUpdatedValues = () => {
+    setUpdateTitle("");
+    setUpdateImage("");
+  };
+
+  const handleUpdatedImage = (e) => {
+    const url = e.target.value;
+    setUpdateImage(url);
+    console.log(url);
+  };
 
   const handleUpdatedTitle = (e) => {
-    setUpdateValue(e.target.value); 
+    setUpdateTitle(e.target.value);
   };
-  
 
-  const handleClean =()=>{
-    setUpdateValue("");
+  const handleClean = () => {
+    setUpdateTitle("");
     setUpdateImage("");
-
-  }
+  };
 
   const handleUpdateCard = (index) => {
     setUpdateBox(true);
     setShowAddImageContainer(false);
-  
+
     const newValue = albumImages[currentAlbumName][index]?.title;
     const newValueImg = albumImages[currentAlbumName][index]?.imageURL;
-  
-    setUpdateValue(newValue);
+
+    setUpdateTitle(newValue);
     setUpdateImage(newValueImg);
   };
-  
 
   const handleDeleteImageCard = (index) => {
     setAlbumImages((prev) => ({
@@ -249,10 +259,14 @@ function App() {
         )}
 
         {updateBox && (
-          <UpdateImage updateValue={updateValue} updateImage={updateImage}
-          handleClean={handleClean}
-          handleUpdatedTitle ={handleUpdatedTitle}
-           />
+          <UpdateImage
+            updateTitle={updateTitle}
+            updateImage={updateImage}
+            handleClean={handleClean}
+            handleUpdatedTitle={handleUpdatedTitle}
+            handleUpdatedImage={handleUpdatedImage}
+            handleUpdatedValues={handleUpdatedValues}
+          />
         )}
 
         {showImageBar && <Images handleGoBack={handleGoBack} />}
