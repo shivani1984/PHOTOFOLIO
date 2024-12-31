@@ -21,7 +21,6 @@ export default function ImageCard({
         <h1>Add image to {currentAlbumName}</h1>
       </span>
 
-      {/* Attach handleSubmit to the form */}
       <form onSubmit={handleSubmit}>
         <input
           type="text"

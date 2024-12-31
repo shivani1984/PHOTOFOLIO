@@ -1,16 +1,18 @@
 import React from "react";
 
 export default function UpdateImage({
-  updateValue,
+  updateTitle,
   updateImage,
   handleClean,
   handleUpdatedTitle,
+  handleUpdatedImage,
+  handleUpdatedValues,
 }) {
-    const handleSubmit = (event) => {
-        event.preventDefault(); // Prevent the form from reloading the page
-      };
-    
-    return (
+  const handleSubmit = (event) => {
+    event.preventDefault(); // Prevent the form from reloading the page
+  };
+
+  return (
     <div className="AddImage">
       <span>
         <h1>Add image to </h1>
@@ -22,14 +24,15 @@ export default function UpdateImage({
           type="text"
           placeholder="Title"
           className="input"
-          value={updateValue}
+          value={updateTitle}
           onChange={handleUpdatedTitle}
         />
         <input
-          type="url"
+          type="text"
           placeholder="Image URL"
           className="input"
           value={updateImage}
+          onChange={handleUpdatedImage}
         />
 
         <div className="btns">
@@ -43,6 +46,8 @@ export default function UpdateImage({
           <button
             type="button" // Prevent form submission
             className="blue-btn solid-btn"
+            onClick={() => handleUpdatedValues()} 
+
           >
             Update
           </button>
